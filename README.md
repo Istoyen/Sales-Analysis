@@ -25,3 +25,5 @@ Discount Percentage and Sales Correlation Study
 
 A comprehensive understanding of sales trends and factors influencing sales.
 Accurate sales predictions for effective business planning and strategy formulation.
+https://public.tableau.com/app/profile/busayo.oyewole6429/viz/SuperstoreSalesAnalysis_17018771146900/Dashboard1?publish=yes
+
