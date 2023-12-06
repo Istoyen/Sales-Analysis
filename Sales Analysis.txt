@@ -1,0 +1,54 @@
+import pandas as pd
+import seaborn as sns
+import matplotlib.pyplot as plt
+from tqdm.auto import tqdm
+
+# Convert 'Order Date' to datetime
+df['Order Date'] = pd.to_datetime(df['Order Date'])
+
+# Create a time series plot of sales by month and year
+# Group by month and year, then sum the sales
+monthly_sales = df.set_index('Order Date').groupby(pd.Grouper(freq='M'))['Sales'].sum().reset_index()
+
+# Plotting the time series
+plt.figure(figsize=(15, 7))
+sns.lineplot(x='Order Date', y='Sales', data=monthly_sales)
+plt.title('Sales Trends Over Time')
+plt.xlabel('Time')
+plt.ylabel('Total Sales')
+plt.xticks(rotation=45)
+plt.tight_layout()
+plt.show()
+
+# Investigate the relationship between shipping mode and sales
+ship_mode_sales = df.groupby('Ship Mode')['Sales'].sum().reset_index()
+
+# Visualize the relationship between shipping mode and sales
+plt.figure(figsize=(10, 6))
+sns.barplot(x='Ship Mode', y='Sales', data=ship_mode_sales)
+plt.title('Total Sales by Shipping Mode')
+plt.xlabel('Shipping Mode')
+plt.ylabel('Total Sales')
+plt.show()
+
+# Segment the sales data by customer segment
+segment_sales = df.groupby('Segment')['Sales'].sum().reset_index()
+
+# Visualize the total sales per customer segment
+plt.figure(figsize=(10, 6))
+sns.barplot(x='Segment', y='Sales', data=segment_sales)
+plt.title('Total Sales by Customer Segment')
+plt.xlabel('Customer Segment')
+plt.ylabel('Total Sales')
+plt.show()
+
+# Explore the sales performance by region
+region_sales = df.groupby('Region')['Sales'].sum().reset_index()
+
+# Visualize the sales performance by region
+plt.figure(figsize=(10, 6))
+sns.barplot(x='Region', y='Sales', data=region_sales)
+plt.title('Total Sales by Region')
+plt.xlabel('Region')
+plt.ylabel('Total Sales')
+plt.show()
